@@ -14,15 +14,17 @@ namespace AspNetWebAPI
         {
             // Web API configuration and services
 
-            // Web API routes
+            // Attribute routing.
             config.MapHttpAttributeRoutes();
 
+            // Convention-based routing.
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            // Convention-based routing.
             config.Routes.MapHttpRoute(
                 name: "Root",
                 routeTemplate: "api/root/{controller}/{id}",
@@ -30,6 +32,7 @@ namespace AspNetWebAPI
                 constraints: new { id = @"\d+" }
             );
 
+            // Convention-based routing.
             config.Routes.MapHttpRoute(
                 name: "ActionApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
