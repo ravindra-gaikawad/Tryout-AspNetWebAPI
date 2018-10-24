@@ -14,10 +14,28 @@ Routing
 	- Create a REST API with Attribute Routing in ASP.NET Web API 2
 
 Working with Data
-	- Using Web API 2 with Entity Framework 6		
+	+ Using Web API 2 with Entity Framework 6		
 		+ Create the Project
 		+ Add Models and Controllers
 		+ Seed the Database
 		+ Handling Entity Relations
 		+ Create Data Transfer Objects (DTOs)		
+		x Create the JavaScript Client
+		x Create the View (UI)
+		x Display Item Details
+		x Add a New Item to the Database
+		x Publish the App to Azure Websites
+
+x Web API and Mobile Clients
+
+x OData
+
+x Serialization and Model Binding in ASP.NET Web API
+
+Error Handling in ASP.NET Web API	
+    - Exception Handling in Web API
+    - Global Error Handling in Web API 2
+
+	
+	
 
