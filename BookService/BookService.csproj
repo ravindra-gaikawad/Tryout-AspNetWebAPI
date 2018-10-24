@@ -194,6 +194,11 @@
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="ExceptionHandlers\ExceptionContext.cs" />
+    <Compile Include="ExceptionHandlers\ExceptionHandlerContext.cs" />
+    <Compile Include="ExceptionHandlers\ExceptionLoggerContext.cs" />
+    <Compile Include="ExceptionHandlers\IExceptionHandler.cs" />
+    <Compile Include="ExceptionHandlers\IExceptionLogger.cs" />
     <Compile Include="Filters\NotImplExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
