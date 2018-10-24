@@ -105,7 +105,6 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Global.asax" />
-    <Content Include="ProgressTracker.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
