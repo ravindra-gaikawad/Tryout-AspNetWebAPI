@@ -5,6 +5,9 @@ using System.Web.Http;
 
 namespace AspNetWebAPI
 {
+    /// <summary>
+    /// Reference: https://docs.microsoft.com/en-us/aspnet/web-api/
+    /// </summary>
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
