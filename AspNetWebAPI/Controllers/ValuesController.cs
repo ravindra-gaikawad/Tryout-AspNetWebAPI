@@ -11,6 +11,9 @@ using System.Web.Http;
 
 namespace AspNetWebAPI.Controllers
 {
+    /// <summary>
+    /// Action results
+    /// </summary>
     public class ValuesController : ApiController
     {
         // NOTE: Run GET methods one by one.

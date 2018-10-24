@@ -8,6 +8,9 @@ using System.Web.Http;
 
 namespace AspNetWebAPI.Controllers
 {
+    /// <summary>
+    /// Get started
+    /// </summary>
     public class ItemsController : ApiController
     {
         Item[] items = new Item[]
