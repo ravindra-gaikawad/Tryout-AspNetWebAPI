@@ -24,6 +24,13 @@ namespace AspNetWebAPI
             );
 
             config.Routes.MapHttpRoute(
+                name: "Root",
+                routeTemplate: "api/root/{controller}/{id}",
+                defaults: new { controller = "stem", id = RouteParameter.Optional },
+                constraints: new { id = @"\d+" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "ActionApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
