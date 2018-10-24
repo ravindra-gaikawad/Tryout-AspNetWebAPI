@@ -1,0 +1,455 @@
+{
+	"info": {
+		"_postman_id": "032aea29-561e-4397-ab78-7589e0e00798",
+		"name": "HandsOn-AspNetWebAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "api/items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/items/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/items/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"items",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Values",
+			"item": [
+				{
+					"name": "api/values",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/values",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"values"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/values",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/values",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"values"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/values/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/values/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"values",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Routing",
+			"item": [
+				{
+					"name": "api/routing/111",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/routing/111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"routing",
+								"111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/routing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/routing",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"routing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/routing",
+					"request": {
+						"method": "HEAD",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/routing",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"routing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/routing/details/555",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/routing/details/555",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"routing",
+								"details",
+								"555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/routing/nonpublic/3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/routing/nonpublic/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"routing",
+								"nonpublic",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ActionSelection",
+			"item": [
+				{
+					"name": "api/root/stem/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/root/stem/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"root",
+								"stem",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/root/items/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/root/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"root",
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/root/values/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "api/root/values/1",
+							"host": [
+								"api"
+							],
+							"path": [
+								"root",
+								"values",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AttributeRouting",
+			"item": [
+				{
+					"name": "api/books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/books/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/authors/12/books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:59732/api/authors/12/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59732",
+							"path": [
+								"api",
+								"authors",
+								"12",
+								"books"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
