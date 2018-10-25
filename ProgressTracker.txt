@@ -43,7 +43,29 @@ Testing and Debugging ASP.NET Web API
     - Mocking Entity Framework when Unit Testing Web API 2
     - Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications
 
-
+Security, Authentication, and Authorization
+	+ Authentication and Authorization in Web API
+	- Secure a Web API with Individual Accounts in Web API 2.2
+	- External Authentication Services with Web API (C#)
+	x Preventing Cross-Site Request Forgery (CSRF) Attacks in Web API
+	+ Enabling Cross-Origin Requests in Web API 2
+	- Authentication Filters in Web API 2
+	- Basic Authentication in Web API
+	- Forms Authentication in Web API
+	- Integrated Windows Authentication
+	- Working with SSL
 	
+x Deployment and Hosting
+
+Advanced Topics	
+    - Configuring Web API 2
+    - Dependency Injection in Web API 2
+    x Calling a Web API From a .NET Client (C#)
+    x HTTP Message Handlers in Web API
+    x HttpClient Message Handlers in Web API
+    x Sending HTML Form Data in Web API: Form-urlencoded Data
+    x Sending HTML Form Data in Web API: File Upload and Multipart MIME
+    - HTTP Cookies in ASP.NET Web API
+
 	
 
