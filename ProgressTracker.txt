@@ -1,6 +1,6 @@
 ﻿Getting Started
 	+ Get Started with ASP.NET Web API 2 (C#)
-		- Using Web API 2 with Entity Framework 6. (https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-1)
+		+ Using Web API 2 with Entity Framework 6. ( https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-1 )
 	+ Action Results in Web API 2
 	x Using Web API with ASP.NET Web Forms
 	+ Creating Help Pages for ASP.NET Web API
@@ -11,7 +11,7 @@ Routing
 	+ Routing in Web API
 	+ Routing and Action Selection in ASP.NET Web API
 	+ Attribute Routing in ASP.NET Web API 2
-	- Create a REST API with Attribute Routing in ASP.NET Web API 2
+	+ Create a REST API with Attribute Routing in ASP.NET Web API 2
 
 Working with Data
 	+ Using Web API 2 with Entity Framework 6		
