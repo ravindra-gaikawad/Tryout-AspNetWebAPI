@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "29ef7c6e-0a53-4c98-bf11-a2ea7575a099",
+		"_postman_id": "f8d74d4e-cb6a-44ad-ae96-3b8d5f0f73c7",
 		"name": "HandsOn-BookService",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -151,6 +151,291 @@
 								"api",
 								"books",
 								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books APIUsingAttrRouting",
+			"item": [
+				{
+					"name": "api/books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57807/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57807",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/books/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57807/api/books/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57807",
+							"path": [
+								"api",
+								"books",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/books/1/details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57807/api/books/1/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57807",
+							"path": [
+								"api",
+								"books",
+								"1",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/books/1/:genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57807/api/books/Fantasy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57807",
+							"path": [
+								"api",
+								"books",
+								"Fantasy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/authors/{authorId}/books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57807/api/authors/1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57807",
+							"path": [
+								"api",
+								"authors",
+								"1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/books/date/:date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57807/api/books/date/2000-12-16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57807",
+							"path": [
+								"api",
+								"books",
+								"date",
+								"2000-12-16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Errors",
+			"item": [
+				{
+					"name": "api/errors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:63879/api/errors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "63879",
+							"path": [
+								"api",
+								"errors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/errors/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:63879/api/errors/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "63879",
+							"path": [
+								"api",
+								"errors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/errors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:63879/api/errors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "63879",
+							"path": [
+								"api",
+								"errors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/errors/2",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:63879/api/errors/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "63879",
+							"path": [
+								"api",
+								"errors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/errors/2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:63879/api/errors/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "63879",
+							"path": [
+								"api",
+								"errors",
+								"2"
 							]
 						}
 					},
