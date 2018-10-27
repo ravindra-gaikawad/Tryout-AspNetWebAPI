@@ -39,21 +39,21 @@ Error Handling in ASP.NET Web API
 Testing and Debugging ASP.NET Web API
     + Tracing in Web API 2
     + Unit Testing Web API 2
-    - Unit Testing Controllers in ASP.NET Web API 2
-    - Mocking Entity Framework when Unit Testing Web API 2
-    - Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications
+    x Unit Testing Controllers in ASP.NET Web API 2
+    x Mocking Entity Framework when Unit Testing Web API 2
+    x Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications
 
 Security, Authentication, and Authorization
 	+ Authentication and Authorization in Web API
-	- Secure a Web API with Individual Accounts in Web API 2.2
-	- External Authentication Services with Web API (C#)
+	x Secure a Web API with Individual Accounts in Web API 2.2
+	x External Authentication Services with Web API (C#)
 	x Preventing Cross-Site Request Forgery (CSRF) Attacks in Web API
 	+ Enabling Cross-Origin Requests in Web API 2
-	- Authentication Filters in Web API 2
-	- Basic Authentication in Web API
-	- Forms Authentication in Web API
-	- Integrated Windows Authentication
-	- Working with SSL
+	x Authentication Filters in Web API 2
+	x Basic Authentication in Web API
+	x Forms Authentication in Web API
+	x Integrated Windows Authentication
+	x Working with SSL
 	
 x Deployment and Hosting
 
