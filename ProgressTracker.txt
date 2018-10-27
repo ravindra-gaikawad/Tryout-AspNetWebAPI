@@ -38,7 +38,7 @@ Error Handling in ASP.NET Web API
 	
 Testing and Debugging ASP.NET Web API
     + Tracing in Web API 2
-    - Unit Testing Web API 2
+    + Unit Testing Web API 2
     - Unit Testing Controllers in ASP.NET Web API 2
     - Mocking Entity Framework when Unit Testing Web API 2
     - Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications
