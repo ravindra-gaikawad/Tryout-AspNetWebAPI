@@ -13,6 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Test", "Books.Test\Bo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB-API-CRUD-Logics", "WEB-API-CRUD-Logics\WEB-API-CRUD-Logics.csproj", "{256D8E34-216D-4BE2-B854-053FC4517531}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI-EF-CodeFirstFromDb", "WebAPI-EF-CodeFirstFromDb\WebAPI-EF-CodeFirstFromDb.csproj", "{D2D1397E-8BA8-4022-BDF6-EFAD762C75F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D5E24686-8B35-4CEC-8FE1-7C9365DBC0EC}"
+	ProjectSection(SolutionItems) = preProject
+		Vehicles.sql = Vehicles.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +46,10 @@ Global
 		{256D8E34-216D-4BE2-B854-053FC4517531}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{256D8E34-216D-4BE2-B854-053FC4517531}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{256D8E34-216D-4BE2-B854-053FC4517531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D1397E-8BA8-4022-BDF6-EFAD762C75F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D1397E-8BA8-4022-BDF6-EFAD762C75F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D1397E-8BA8-4022-BDF6-EFAD762C75F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D1397E-8BA8-4022-BDF6-EFAD762C75F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
