@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b40d1d39-27a9-4930-8060-ed6c798b0e3a",
+		"_postman_id": "032aea29-561e-4397-ab78-7589e0e00798",
 		"name": "HandsOn-AspNetWebAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -444,6 +444,148 @@
 								"authors",
 								"12",
 								"books"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRUD API",
+			"item": [
+				{
+					"name": "api/crud",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\":\"Vijay\",\n\t\"Designation\":\"Sr. Software Engineer\",\n\t\"Location\":\"Pune\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:60856/api/crud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60856",
+							"path": [
+								"api",
+								"crud"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/crud/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:60856/api/crud/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60856",
+							"path": [
+								"api",
+								"crud",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/crud",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:60856/api/crud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60856",
+							"path": [
+								"api",
+								"crud"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/crud/2",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ID\":\"10009\",\n\t\"Name\":\"Ravindra\",\n\t\"Designation\":\"Software Engineer\",\n\t\"Location\":\"Pune\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:60856/api/crud/10009",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60856",
+							"path": [
+								"api",
+								"crud",
+								"10009"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/crud/3",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:60856/api/crud/10010",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60856",
+							"path": [
+								"api",
+								"crud",
+								"10010"
 							]
 						}
 					},
