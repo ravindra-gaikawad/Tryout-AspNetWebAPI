@@ -10,24 +10,30 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebAPI_EF_CodeFirstFromDb.Models;
+using WebAPI_EF_CodeFirstFromDb.Service;
 
 namespace WebAPI_EF_CodeFirstFromDb.Controllers
 {
     public class VehiclesController : ApiController
     {
-        private EFContext db = new EFContext();
+        VehicleService vehicleService = new VehicleService();
+
+        public VehiclesController()
+        {
+
+        }
 
         // GET: api/Vehicles
         public IQueryable<Vehicle> GetVehicles()
         {
-            return db.Vehicles;
+            return vehicleService.GetAll();
         }
 
         // GET: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
         public async Task<IHttpActionResult> GetVehicle(int id)
         {
-            Vehicle vehicle = await db.Vehicles.FindAsync(id);
+            Vehicle vehicle = vehicleService.Get(id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -50,23 +56,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return BadRequest();
             }
 
-            db.Entry(vehicle).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!VehicleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            vehicleService.Edit(vehicle);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -80,8 +70,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Vehicles.Add(vehicle);
-            await db.SaveChangesAsync();
+            vehicleService.Add(vehicle);
 
             return CreatedAtRoute("DefaultApi", new { id = vehicle.Id }, vehicle);
         }
@@ -90,30 +79,15 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
         [ResponseType(typeof(Vehicle))]
         public async Task<IHttpActionResult> DeleteVehicle(int id)
         {
-            Vehicle vehicle = await db.Vehicles.FindAsync(id);
+            Vehicle vehicle = vehicleService.Get(id);
             if (vehicle == null)
             {
                 return NotFound();
             }
 
-            db.Vehicles.Remove(vehicle);
-            await db.SaveChangesAsync();
+            vehicleService.Delete(vehicle);
 
             return Ok(vehicle);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool VehicleExists(int id)
-        {
-            return db.Vehicles.Count(e => e.Id == id) > 0;
         }
     }
 }
