@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebAPI_EF_CodeFirstFromDb.Models;
 using WebAPI_EF_CodeFirstFromDb.Service;
+using WebAPI_EF_CodeFirstFromDb.UoW;
 
 namespace WebAPI_EF_CodeFirstFromDb.Controllers
 {
@@ -57,6 +58,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
             }
 
             vehicleService.Edit(vehicle);
+            UnitOfWork.Instance.Complete();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -71,6 +73,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
             }
 
             vehicleService.Add(vehicle);
+            UnitOfWork.Instance.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = vehicle.Id }, vehicle);
         }
@@ -86,6 +89,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
             }
 
             vehicleService.Delete(vehicle);
+            UnitOfWork.Instance.Complete();
 
             return Ok(vehicle);
         }
