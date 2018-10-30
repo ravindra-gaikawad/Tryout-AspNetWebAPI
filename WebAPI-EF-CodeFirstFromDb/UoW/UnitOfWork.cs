@@ -12,9 +12,11 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
     // References: 
     // https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
     // https://lostechies.com/derekgreer/2015/11/01/survey-of-entity-framework-unit-of-work-patterns/
+    // https://techbrij.com/generic-repository-unit-of-work-entity-framework-unit-testing-asp-net-mvc
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly DbContext context;
+        private DbContextTransaction transaction;
 
         public IRepository Repository { get; set; }
 
@@ -26,17 +28,28 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
 
         void IUnitOfWork.BeginTransaction()
         {
-            throw new NotImplementedException();
+            transaction = context.Database.BeginTransaction();
         }
 
         void IUnitOfWork.CommitTransaction()
         {
-            throw new NotImplementedException();
+            if (transaction == null)
+                return;
+
+            context.SaveChanges();
+            transaction.Commit();
+
+            transaction = null;
         }
 
         void IUnitOfWork.RollbackTransaction()
         {
-            throw new NotImplementedException();
+            if (transaction == null)
+                return;
+
+            transaction.Rollback();
+
+            transaction = null;
         }
 
         void IUnitOfWork.Complete()
