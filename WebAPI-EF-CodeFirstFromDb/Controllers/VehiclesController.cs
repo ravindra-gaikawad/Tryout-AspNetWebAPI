@@ -11,11 +11,14 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebAPI_EF_CodeFirstFromDb.Models;
 using WebAPI_EF_CodeFirstFromDb.Service;
+using WebAPI_EF_CodeFirstFromDb.UoW;
 
 namespace WebAPI_EF_CodeFirstFromDb.Controllers
 {
     public class VehiclesController : ApiController
     {
+        private IUnitOfWork unitOfWork = new UnitOfWork();
+
         VehicleService vehicleService = new VehicleService();
 
         public VehiclesController()
@@ -26,14 +29,14 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
         // GET: api/Vehicles
         public IQueryable<Vehicle> GetVehicles()
         {
-            return vehicleService.GetAll();
+            return unitOfWork.Repository.GetAll<Vehicle>();
         }
 
         // GET: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
         public async Task<IHttpActionResult> GetVehicle(int id)
         {
-            Vehicle vehicle = vehicleService.Get(id);
+            Vehicle vehicle = unitOfWork.Repository.Get<Vehicle>(id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -56,7 +59,8 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return BadRequest();
             }
 
-            vehicleService.Edit(vehicle);
+            unitOfWork.Repository.Edit<Vehicle>(vehicle);
+            unitOfWork.Complete();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -70,7 +74,8 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return BadRequest(ModelState);
             }
 
-            vehicleService.Add(vehicle);
+            unitOfWork.Repository.Add<Vehicle>(vehicle);
+            unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = vehicle.Id }, vehicle);
         }
@@ -85,7 +90,8 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return NotFound();
             }
 
-            vehicleService.Delete(vehicle);
+            unitOfWork.Repository.Delete<Vehicle>(vehicle);
+            unitOfWork.Complete();
 
             return Ok(vehicle);
         }

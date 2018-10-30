@@ -107,6 +107,8 @@
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Service\IVehicleService.cs" />
     <Compile Include="Service\VehicleService.cs" />
+    <Compile Include="UoW\IUnitOfWork.cs" />
+    <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

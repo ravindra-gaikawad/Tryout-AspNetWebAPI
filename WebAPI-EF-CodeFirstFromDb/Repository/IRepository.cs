@@ -14,6 +14,5 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
         void Add<T>(T entity) where T : BaseEntity;
         void Delete<T>(T entity) where T : BaseEntity;
         void Edit<T>(T entity) where T : BaseEntity;
-        void Save();
     }
 }
