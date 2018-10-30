@@ -7,9 +7,9 @@ namespace WebAPI_EF_CodeFirstFromDb.Models
     using System.Data.Entity.Spatial;
 
     [Table("Vehicle")]
-    public partial class Vehicle
+    public partial class Vehicle : BaseEntity
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
 
         [Required]
         [StringLength(50)]

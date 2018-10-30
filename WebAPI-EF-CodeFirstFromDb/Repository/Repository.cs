@@ -8,38 +8,10 @@ using WebAPI_EF_CodeFirstFromDb.Models;
 
 namespace WebAPI_EF_CodeFirstFromDb.Repository
 {
-    public class Repository<T> : IDisposable, IRepository<T> where T : class
+    public class Repository: IDisposable, IRepository
     {
         private EFContext context = new EFContext();
        
-        public T Get(int id)
-        {
-            return context.Set<T>().Find(id);
-        }
-
-        public IQueryable<T> GetAll()
-        {
-            return context.Set<T>().AsQueryable();
-        }
-
-        public void Add(T entity)
-        {
-            context.Set<T>().Add(entity);
-            context.SaveChanges();
-        }
-
-        public void Delete(T entity)
-        {
-            context.Set<T>().Remove(entity);
-            context.SaveChanges();
-        }
-
-        public void Edit(T entity)
-        {
-            context.Entry<T>(entity).State = EntityState.Modified;
-            context.SaveChanges();
-        }
-
         public void Dispose()
         {
             Dispose(true);
@@ -63,6 +35,34 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
         public void Save()
         {
             
+        }
+
+        public T Get<T>(int id) where T : BaseEntity
+        {
+            return context.Set<T>().Find(id);
+        }
+
+        public IQueryable<T> GetAll<T>() where T : BaseEntity
+        {
+            return context.Set<T>().AsQueryable();
+        }
+
+        public void Add<T>(T entity) where T : BaseEntity
+        {
+            context.Set<T>().Add(entity);
+            context.SaveChanges();
+        }
+
+        public void Delete<T>(T entity) where T : BaseEntity
+        {
+            context.Set<T>().Remove(entity);
+            context.SaveChanges();
+        }
+
+        public void Edit<T>(T entity) where T : BaseEntity
+        {
+            context.Entry<T>(entity).State = EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }

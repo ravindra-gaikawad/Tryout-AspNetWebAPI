@@ -9,7 +9,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 {
     public class VehicleService : IVehicleService
     {
-        Repository<Vehicle> repository = new Repository<Vehicle>();
+        Repository.Repository repository = new Repository.Repository();
 
         public VehicleService()
         {
@@ -18,27 +18,27 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 
         public void Add(Vehicle entity)
         {
-            repository.Add(entity);
+            repository.Add<Vehicle>(entity);
         }
 
         public void Delete(Vehicle entity)
         {
-            repository.Delete(entity);
+            repository.Delete<Vehicle>(entity);
         }
 
         public void Edit(Vehicle entity)
         {
-            repository.Edit(entity);
+            repository.Edit<Vehicle>(entity);
         }
 
         public Vehicle Get(int id)
         {
-            return repository.Get(id);
+            return repository.Get<Vehicle>(id);
         }
 
         public IQueryable<Vehicle> GetAll()
         {
-            return repository.GetAll();
+            return repository.GetAll<Vehicle>();
         }
     }
 }
