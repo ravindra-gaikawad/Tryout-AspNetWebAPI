@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using WebAPI_EF_CodeFirstFromDb.Models;
 using WebAPI_EF_CodeFirstFromDb.Repository;
@@ -10,6 +11,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 {
     public class VehicleService : IVehicleService
     {
+         
         public VehicleService()
         {
 
@@ -17,6 +19,15 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 
         public void Add(Vehicle entity)
         {
+            ManufacturerService manufacturerService = new ManufacturerService();
+            Manufacturer manufacturer = manufacturerService.Find<Manufacturer>(x => x.ManufacturerName == entity.Manufacturer);
+
+            if(manufacturer == null)
+            {
+                manufacturerService.Add(new Manufacturer()
+                { ManufacturerName = entity.Manufacturer });
+            }
+                        
             UnitOfWork.Instance.Repository.Add<Vehicle>(entity);
         }
 
@@ -27,7 +38,21 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 
         public void Edit(Vehicle entity)
         {
+            ManufacturerService manufacturerService = new ManufacturerService();
+            Manufacturer manufacturer = manufacturerService.Find<Manufacturer>(x => x.ManufacturerName == entity.Manufacturer);
+
+            if (manufacturer == null)
+            {
+                manufacturerService.Add(new Manufacturer()
+                { ManufacturerName = entity.Manufacturer });
+            }
+
             UnitOfWork.Instance.Repository.Edit<Vehicle>(entity);
+        }
+
+        public Vehicle Find<T>(Expression<Func<Vehicle, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
 
         public Vehicle Get(int id)

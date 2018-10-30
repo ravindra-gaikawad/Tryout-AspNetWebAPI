@@ -7,14 +7,12 @@ namespace WebAPI_EF_CodeFirstFromDb.Models
     using System.Data.Entity.Spatial;
 
     [Table("Manufacturer")]
-    public partial class Manufacturer
+    public partial class Manufacturer: BaseEntity
     {
-        [Key]
-        [Column(Order = 0)]
-        public int ManufacturerId { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
+        //[Key]
+        //[Column(Order = 0)]
+        //public override int Id { get; set; }
+                
         [StringLength(50)]
         public string ManufacturerName { get; set; }
     }

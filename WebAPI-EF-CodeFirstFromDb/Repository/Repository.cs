@@ -8,10 +8,10 @@ using WebAPI_EF_CodeFirstFromDb.Models;
 
 namespace WebAPI_EF_CodeFirstFromDb.Repository
 {
-    public class Repository: IDisposable, IRepository
+    public class Repository : IDisposable, IRepository
     {
         private EFContext context;
-       
+
         public Repository(EFContext context)
         {
             this.context = context;
@@ -39,6 +39,11 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
         public T Get<T>(int id) where T : BaseEntity
         {
             return context.Set<T>().Find(id);
+        }
+
+        public T Find<T>(Expression<Func<T, bool>> predicate) where T : BaseEntity
+        {
+            throw new NotImplementedException();
         }
 
         public IQueryable<T> GetAll<T>() where T : BaseEntity
