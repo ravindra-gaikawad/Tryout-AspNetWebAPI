@@ -15,7 +15,24 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
         EFContext context = new EFContext();
         Repository.Repository repository;
 
-        Repository.Repository IUnitOfWork.Repository
+        private static readonly UnitOfWork instance = new UnitOfWork();
+        // Explicit static constructor to tell C# compiler  
+        // not to mark type as beforefieldinit  
+        static UnitOfWork()
+        {
+        }
+        private UnitOfWork()
+        {
+        }
+        public static UnitOfWork Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        public Repository.Repository Repository
         {
             get
             {
@@ -43,7 +60,7 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
             throw new NotImplementedException();
         }
 
-        void IUnitOfWork.Complete()
+        public void Complete()
         {
             context.SaveChanges();
         }

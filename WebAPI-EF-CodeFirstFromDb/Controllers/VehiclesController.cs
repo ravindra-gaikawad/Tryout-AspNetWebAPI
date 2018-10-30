@@ -17,8 +17,6 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
 {
     public class VehiclesController : ApiController
     {
-        private IUnitOfWork unitOfWork = new UnitOfWork();
-
         VehicleService vehicleService = new VehicleService();
 
         public VehiclesController()
@@ -29,14 +27,14 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
         // GET: api/Vehicles
         public IQueryable<Vehicle> GetVehicles()
         {
-            return unitOfWork.Repository.GetAll<Vehicle>();
+            return vehicleService.GetAll();
         }
 
         // GET: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
         public async Task<IHttpActionResult> GetVehicle(int id)
         {
-            Vehicle vehicle = unitOfWork.Repository.Get<Vehicle>(id);
+            Vehicle vehicle = vehicleService.Get(id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -59,8 +57,8 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return BadRequest();
             }
 
-            unitOfWork.Repository.Edit<Vehicle>(vehicle);
-            unitOfWork.Complete();
+            vehicleService.Edit(vehicle);
+            UnitOfWork.Instance.Complete();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -74,8 +72,8 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return BadRequest(ModelState);
             }
 
-            unitOfWork.Repository.Add<Vehicle>(vehicle);
-            unitOfWork.Complete();
+            vehicleService.Add(vehicle);
+            UnitOfWork.Instance.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = vehicle.Id }, vehicle);
         }
@@ -90,8 +88,8 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
                 return NotFound();
             }
 
-            unitOfWork.Repository.Delete<Vehicle>(vehicle);
-            unitOfWork.Complete();
+            vehicleService.Delete(vehicle);
+            UnitOfWork.Instance.Complete();
 
             return Ok(vehicle);
         }

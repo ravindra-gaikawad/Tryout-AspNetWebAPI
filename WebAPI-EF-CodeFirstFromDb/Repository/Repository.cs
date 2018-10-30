@@ -58,6 +58,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
 
         public void Edit<T>(T entity) where T : BaseEntity
         {
+            context.Set<T>().Add(entity);
             context.Entry<T>(entity).State = EntityState.Modified;
         }
     }
