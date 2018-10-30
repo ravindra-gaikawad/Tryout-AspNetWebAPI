@@ -11,34 +11,33 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 {
     public class VehicleService : IVehicleService
     {
-         
-        public VehicleService()
-        {
+        private readonly IManufacturerService manufacturerService;
 
+        public VehicleService(IManufacturerService manufacturerService)
+        {
+            this.manufacturerService = manufacturerService;
         }
 
-        public void Add(Vehicle entity)
+        void IVehicleService.Add(Vehicle entity)
         {
-            ManufacturerService manufacturerService = new ManufacturerService();
             Manufacturer manufacturer = manufacturerService.Find<Manufacturer>(x => x.ManufacturerName == entity.Manufacturer);
 
-            if(manufacturer == null)
+            if (manufacturer == null)
             {
                 manufacturerService.Add(new Manufacturer()
                 { ManufacturerName = entity.Manufacturer });
             }
-                        
+
             UnitOfWork.Instance.Repository.Add<Vehicle>(entity);
         }
 
-        public void Delete(Vehicle entity)
+        void IVehicleService.Delete(Vehicle entity)
         {
             UnitOfWork.Instance.Repository.Delete<Vehicle>(entity);
         }
 
-        public void Edit(Vehicle entity)
+        void IVehicleService.Edit(Vehicle entity)
         {
-            ManufacturerService manufacturerService = new ManufacturerService();
             Manufacturer manufacturer = manufacturerService.Find<Manufacturer>(x => x.ManufacturerName == entity.Manufacturer);
 
             if (manufacturer == null)
@@ -50,17 +49,17 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
             UnitOfWork.Instance.Repository.Edit<Vehicle>(entity);
         }
 
-        public Vehicle Find<T>(Expression<Func<Vehicle, bool>> predicate)
+        Vehicle IVehicleService.Find<T>(Expression<Func<Vehicle, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Vehicle Get(int id)
+        Vehicle IVehicleService.Get(int id)
         {
             return UnitOfWork.Instance.Repository.Get<Vehicle>(id);
         }
 
-        public IQueryable<Vehicle> GetAll()
+        IQueryable<Vehicle> IVehicleService.GetAll()
         {
             return UnitOfWork.Instance.Repository.GetAll<Vehicle>();
         }

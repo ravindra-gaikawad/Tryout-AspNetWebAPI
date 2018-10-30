@@ -8,7 +8,7 @@ using WebAPI_EF_CodeFirstFromDb.Models;
 
 namespace WebAPI_EF_CodeFirstFromDb.Service
 {
-    interface IManufacturerService
+    public interface IManufacturerService
     {
         Manufacturer Get(int id);
         Manufacturer Find<T>(Expression<Func<Manufacturer, bool>> predicate);

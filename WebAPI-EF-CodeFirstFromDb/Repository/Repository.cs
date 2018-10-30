@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -41,11 +42,6 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
             return context.Set<T>().Find(id);
         }
 
-        public T Find<T>(Expression<Func<T, bool>> predicate) where T : BaseEntity
-        {
-            throw new NotImplementedException();
-        }
-
         public IQueryable<T> GetAll<T>() where T : BaseEntity
         {
             return context.Set<T>().AsQueryable();
@@ -63,8 +59,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
 
         public void Edit<T>(T entity) where T : BaseEntity
         {
-            context.Set<T>().Add(entity);
-            context.Entry<T>(entity).State = EntityState.Modified;
+            context.Set<T>().AddOrUpdate(entity);
         }
     }
 }

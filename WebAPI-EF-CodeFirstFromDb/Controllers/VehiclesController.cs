@@ -17,11 +17,11 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
 {
     public class VehiclesController : ApiController
     {
-        VehicleService vehicleService = new VehicleService();
+        private readonly IVehicleService vehicleService;
 
-        public VehiclesController()
+        public VehiclesController(IVehicleService vehicleService)
         {
-
+            this.vehicleService = vehicleService;
         }
 
         // GET: api/Vehicles

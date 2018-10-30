@@ -10,33 +10,33 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 {
     public class ManufacturerService : IManufacturerService
     {
-        public void Add(Manufacturer entity)
+        void IManufacturerService.Add(Manufacturer entity)
         {
             UnitOfWork.Instance.Repository.Add<Manufacturer>(entity);
         }
 
-        public void Delete(Manufacturer entity)
+        void IManufacturerService.Delete(Manufacturer entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Manufacturer entity)
+        void IManufacturerService.Edit(Manufacturer entity)
         {
             throw new NotImplementedException();
         }
 
-        public Manufacturer Find<T>(Expression<Func<Manufacturer, bool>> predicate)
+        Manufacturer IManufacturerService.Find<T>(Expression<Func<Manufacturer, bool>> predicate)
         {
-            var queryable =  UnitOfWork.Instance.Repository.GetAll<Manufacturer>();
+            var queryable = UnitOfWork.Instance.Repository.GetAll<Manufacturer>();
             return queryable.Where(predicate).ToList().FirstOrDefault();
         }
 
-        public Manufacturer Get(int id)
+        Manufacturer IManufacturerService.Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Manufacturer> GetAll()
+        IQueryable<Manufacturer> IManufacturerService.GetAll()
         {
             throw new NotImplementedException();
         }

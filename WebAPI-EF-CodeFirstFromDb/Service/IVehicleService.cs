@@ -7,7 +7,7 @@ using WebAPI_EF_CodeFirstFromDb.Models;
 
 namespace WebAPI_EF_CodeFirstFromDb.Service
 {
-    interface IVehicleService
+    public interface IVehicleService
     {
         Vehicle Get(int id);
         Vehicle Find<T>(Expression<Func<Vehicle, bool>> predicate);

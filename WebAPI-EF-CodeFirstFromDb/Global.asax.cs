@@ -11,6 +11,7 @@ namespace WebAPI_EF_CodeFirstFromDb
     {
         protected void Application_Start()
         {
+            AutofacConfig.Initialize(GlobalConfiguration.Configuration);
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
