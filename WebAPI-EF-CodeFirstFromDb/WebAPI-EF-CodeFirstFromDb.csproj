@@ -118,6 +118,7 @@
     <Compile Include="Service\VehicleService.cs" />
     <Compile Include="UoW\IUnitOfWork.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
+    <Compile Include="UoW\UoWActionFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

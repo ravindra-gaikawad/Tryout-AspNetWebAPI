@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using WebAPI_EF_CodeFirstFromDb.Controllers;
 using WebAPI_EF_CodeFirstFromDb.Models;
 using WebAPI_EF_CodeFirstFromDb.Service;
 using WebAPI_EF_CodeFirstFromDb.UoW;
@@ -22,7 +23,7 @@ namespace WebAPI_EF_CodeFirstFromDb
 
         public static void Initialize(HttpConfiguration config)
         {
-            Initialize(config, RegisterServices(new ContainerBuilder()));
+            Initialize(config, RegisterServices(config,new ContainerBuilder()));
         }
 
 
@@ -31,10 +32,15 @@ namespace WebAPI_EF_CodeFirstFromDb
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
-        private static IContainer RegisterServices(ContainerBuilder builder)
+        private static IContainer RegisterServices(HttpConfiguration config,ContainerBuilder builder)
         {
             //Register your Web API controllers.  
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            builder.RegisterWebApiFilterProvider(config);
+            builder.Register(c => new UoW.UoWActionFilter(c.Resolve<IUnitOfWork>()))
+                .AsWebApiActionFilterFor<VehiclesController>()
+                .InstancePerRequest();
 
             builder.RegisterType<EFContext>()
                    .As<DbContext>()
