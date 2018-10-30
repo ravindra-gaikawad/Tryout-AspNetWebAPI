@@ -11,9 +11,9 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
 {
     public class Repository : IDisposable, IRepository
     {
-        private EFContext context;
+        private DbContext context;
 
-        public Repository(EFContext context)
+        public Repository(DbContext context)
         {
             this.context = context;
         }

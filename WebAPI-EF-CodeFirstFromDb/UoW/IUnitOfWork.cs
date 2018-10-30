@@ -8,7 +8,7 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
 {
     public interface IUnitOfWork
     {
-        Repository.Repository Repository { get; }
+        Repository.IRepository Repository { get; set; }
 
         void BeginTransaction();
 

@@ -7,7 +7,7 @@ using WebAPI_EF_CodeFirstFromDb.Models;
 
 namespace WebAPI_EF_CodeFirstFromDb.Repository
 {
-    interface IRepository
+    public interface IRepository
     {
         T Get<T>(int id) where T: BaseEntity;
         IQueryable<T> GetAll<T>() where T : BaseEntity;

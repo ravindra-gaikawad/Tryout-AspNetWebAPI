@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using WebAPI_EF_CodeFirstFromDb.Models;
@@ -12,37 +14,14 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
     // https://lostechies.com/derekgreer/2015/11/01/survey-of-entity-framework-unit-of-work-patterns/
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        EFContext context = new EFContext();
-        Repository.Repository repository;
+        private readonly DbContext context;
 
-        private static readonly UnitOfWork instance = new UnitOfWork();
-        // Explicit static constructor to tell C# compiler  
-        // not to mark type as beforefieldinit  
-        static UnitOfWork()
-        {
-        }
-        private UnitOfWork()
-        {
-        }
-        public static UnitOfWork Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public IRepository Repository { get; set; }
 
-        public Repository.Repository Repository
+        public UnitOfWork(IRepository repository, DbContext context)
         {
-            get
-            {
-
-                if (this.repository == null)
-                {
-                    this.repository = new Repository.Repository(context);
-                }
-                return repository;
-            }
+            Repository = repository;
+            this.context = context;
         }
 
         void IUnitOfWork.BeginTransaction()
@@ -60,7 +39,7 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
             throw new NotImplementedException();
         }
 
-       public void Complete()
+        void IUnitOfWork.Complete()
         {
             context.SaveChanges();
         }
@@ -84,6 +63,5 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }

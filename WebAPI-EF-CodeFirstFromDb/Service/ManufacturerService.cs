@@ -10,9 +10,15 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 {
     public class ManufacturerService : IManufacturerService
     {
+        private readonly IUnitOfWork unitOfWork;
+
+        public ManufacturerService(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
         void IManufacturerService.Add(Manufacturer entity)
         {
-            UnitOfWork.Instance.Repository.Add<Manufacturer>(entity);
+            unitOfWork.Repository.Add<Manufacturer>(entity);
         }
 
         void IManufacturerService.Delete(Manufacturer entity)
@@ -27,7 +33,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 
         Manufacturer IManufacturerService.Find<T>(Expression<Func<Manufacturer, bool>> predicate)
         {
-            var queryable = UnitOfWork.Instance.Repository.GetAll<Manufacturer>();
+            var queryable = unitOfWork.Repository.GetAll<Manufacturer>();
             return queryable.Where(predicate).ToList().FirstOrDefault();
         }
 

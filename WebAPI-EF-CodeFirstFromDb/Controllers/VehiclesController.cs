@@ -18,10 +18,12 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
     public class VehiclesController : ApiController
     {
         private readonly IVehicleService vehicleService;
+        private readonly IUnitOfWork unitOfWork;
 
-        public VehiclesController(IVehicleService vehicleService)
+        public VehiclesController(IVehicleService vehicleService,IUnitOfWork unitOfWork)
         {
             this.vehicleService = vehicleService;
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: api/Vehicles
@@ -58,7 +60,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
             }
 
             vehicleService.Edit(vehicle);
-            UnitOfWork.Instance.Complete();
+            unitOfWork.Complete();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -73,7 +75,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
             }
 
             vehicleService.Add(vehicle);
-            UnitOfWork.Instance.Complete();
+            unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = vehicle.Id }, vehicle);
         }
@@ -89,7 +91,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Controllers
             }
 
             vehicleService.Delete(vehicle);
-            UnitOfWork.Instance.Complete();
+            unitOfWork.Complete();
 
             return Ok(vehicle);
         }
