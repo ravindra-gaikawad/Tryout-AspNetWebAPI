@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -7,46 +8,42 @@ using WebAPI_EF_CodeFirstFromDb.Models;
 
 namespace WebAPI_EF_CodeFirstFromDb.Repository
 {
-    public class Repository : IRepository<Vehicle>,IDisposable
+    public class Repository<T> : IDisposable, IRepository<T> where T : class
     {
         private EFContext context = new EFContext();
-
-        //public Repository(EFContext context)
-        //{
-        //    this.context = context;
-        //}
-
-        public IQueryable<Vehicle> GetAll()
+       
+        public T Get(int id)
         {
-            return context.Vehicles.AsQueryable();
+            return context.Set<T>().Find(id);
         }
 
-        public Vehicle Get(int id)
+        public IQueryable<T> GetAll()
         {
-            return context.Vehicles.Find(id);
+            return context.Set<T>().AsQueryable();
         }
 
-        public void Add(Vehicle vehicle)
+        public void Add(T entity)
         {
-            context.Vehicles.Add(vehicle);
-            Save();
-        }
-
-        public void Delete(Vehicle vehicle)
-        {            
-            context.Vehicles.Remove(vehicle);
-            Save();
-        }
-
-        public void Edit(Vehicle vehicle)
-        {
-            context.Entry(vehicle).State = System.Data.Entity.EntityState.Modified;
-            Save();
-        }
-
-        public void Save()
-        {
+            context.Set<T>().Add(entity);
             context.SaveChanges();
+        }
+
+        public void Delete(T entity)
+        {
+            context.Set<T>().Remove(entity);
+            context.SaveChanges();
+        }
+
+        public void Edit(T entity)
+        {
+            context.Entry<T>(entity).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         private bool disposed = false;
@@ -63,10 +60,9 @@ namespace WebAPI_EF_CodeFirstFromDb.Repository
             this.disposed = true;
         }
 
-        public void Dispose()
+        public void Save()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            
         }
     }
 }

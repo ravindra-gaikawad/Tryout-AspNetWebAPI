@@ -9,7 +9,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 {
     public class VehicleService : IVehicleService
     {
-        Repository.Repository repository = new Repository.Repository();
+        Repository<Vehicle> repository = new Repository<Vehicle>();
 
         public VehicleService()
         {
