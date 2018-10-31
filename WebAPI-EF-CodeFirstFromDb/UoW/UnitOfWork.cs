@@ -18,11 +18,8 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
         private readonly DbContext context;
         private DbContextTransaction transaction;
 
-        public IRepository Repository { get; set; }
-
         public UnitOfWork(IRepository repository, DbContext context)
         {
-            Repository = repository;
             this.context = context;
         }
 
@@ -50,11 +47,6 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
             transaction.Rollback();
 
             transaction = null;
-        }
-
-        void IUnitOfWork.Complete()
-        {
-            context.SaveChanges();
         }
 
         private bool disposed = false;

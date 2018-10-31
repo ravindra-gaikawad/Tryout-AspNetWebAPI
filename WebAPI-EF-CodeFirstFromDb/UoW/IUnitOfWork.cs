@@ -8,14 +8,10 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
 {
     public interface IUnitOfWork
     {
-        Repository.IRepository Repository { get; set; }
-
         void BeginTransaction();
 
         void CommitTransaction();
 
         void RollbackTransaction();
-
-        void Complete();
     }
 }

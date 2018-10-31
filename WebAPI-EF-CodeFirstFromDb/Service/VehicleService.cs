@@ -12,12 +12,12 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
     public class VehicleService : IVehicleService
     {
         private readonly IManufacturerService manufacturerService;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IRepository repository;
 
-        public VehicleService(IManufacturerService manufacturerService, IUnitOfWork unitOfWork)
+        public VehicleService(IManufacturerService manufacturerService, IRepository repository)
         {
             this.manufacturerService = manufacturerService;
-            this.unitOfWork = unitOfWork;
+            this.repository = repository;
         }
 
         void IVehicleService.Add(Vehicle entity)
@@ -30,12 +30,12 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
                 { ManufacturerName = entity.Manufacturer });
             }
 
-            unitOfWork.Repository.Add<Vehicle>(entity);
+            repository.Add<Vehicle>(entity);
         }
 
         void IVehicleService.Delete(Vehicle entity)
         {
-            unitOfWork.Repository.Delete<Vehicle>(entity);
+            repository.Delete<Vehicle>(entity);
         }
 
         void IVehicleService.Edit(Vehicle entity)
@@ -48,7 +48,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
                 { ManufacturerName = entity.Manufacturer });
             }
 
-            unitOfWork.Repository.Edit<Vehicle>(entity);
+            repository.Edit<Vehicle>(entity);
         }
 
         Vehicle IVehicleService.Find<T>(Expression<Func<Vehicle, bool>> predicate)
@@ -58,12 +58,12 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 
         Vehicle IVehicleService.Get(int id)
         {
-            return unitOfWork.Repository.Get<Vehicle>(id);
+            return repository.Get<Vehicle>(id);
         }
 
         IQueryable<Vehicle> IVehicleService.GetAll()
         {
-            return unitOfWork.Repository.GetAll<Vehicle>();
+            return repository.GetAll<Vehicle>();
         }
     }
 }
