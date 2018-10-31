@@ -1,15 +1,12 @@
-﻿using Autofac.Integration.WebApi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
-
-namespace WebAPI_EF_CodeFirstFromDb.UoW
+﻿namespace WebAPI_EF_CodeFirstFromDb.UoW
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Filters;
+    using Autofac.Integration.WebApi;
+
     public class UoWActionFilter : IAutofacActionFilter
     {
         private readonly IUnitOfWork unitOfWork;
@@ -32,33 +29,32 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
             {
                 if (actionExecutedContext.Exception == null && actionExecutedContext.Response.StatusCode != System.Net.HttpStatusCode.BadRequest)
                 {
-                    unitOfWork.CommitTransaction();
+                    this.unitOfWork.CommitTransaction();
                     System.Diagnostics.Debug.WriteLine("UoW Committed");
                 }
                 else
                 {
                     try
                     {
-                        unitOfWork.RollbackTransaction();
+                        this.unitOfWork.RollbackTransaction();
                         System.Diagnostics.Debug.WriteLine("UoW Rollback");
                     }
-                    catch (Exception)
+                    catch
                     {
                     }
                 }
             }
-            finally
+            catch
             {
-                
             }
-            
+
             return Task.FromResult(0);
         }
 
         public Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
         {
             System.Diagnostics.Debug.WriteLine("UoW Begin");
-            unitOfWork.BeginTransaction();            
+            this.unitOfWork.BeginTransaction();
             return Task.FromResult(0);
         }
     }

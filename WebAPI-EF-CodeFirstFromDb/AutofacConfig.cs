@@ -1,40 +1,35 @@
-﻿using Autofac;
-using Autofac.Integration.WebApi;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Http;
-using WebAPI_EF_CodeFirstFromDb.Controllers;
-using WebAPI_EF_CodeFirstFromDb.Models;
-using WebAPI_EF_CodeFirstFromDb.Service;
-using WebAPI_EF_CodeFirstFromDb.UoW;
-
-namespace WebAPI_EF_CodeFirstFromDb
+﻿namespace WebAPI_EF_CodeFirstFromDb
 {
-    //References:
+    using System.Data.Entity;
+    using System.Reflection;
+    using System.Web.Http;
+    using Autofac;
+    using Autofac.Integration.WebApi;
+    using WebAPI_EF_CodeFirstFromDb.Controllers;
+    using WebAPI_EF_CodeFirstFromDb.Models;
+    using WebAPI_EF_CodeFirstFromDb.Service;
+    using WebAPI_EF_CodeFirstFromDb.UoW;
+
+    // References:
     // https://www.c-sharpcorner.com/article/using-autofac-with-web-api/
     // https://autofaccn.readthedocs.io/en/latest/index.html
     public class AutofacConfig
     {
-        public static IContainer Container;
+        private static IContainer container;
 
         public static void Initialize(HttpConfiguration config)
         {
-            Initialize(config, RegisterServices(config,new ContainerBuilder()));
+            Initialize(config, RegisterServices(config, new ContainerBuilder()));
         }
-
 
         public static void Initialize(HttpConfiguration config, IContainer container)
         {
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
-        private static IContainer RegisterServices(HttpConfiguration config,ContainerBuilder builder)
+        private static IContainer RegisterServices(HttpConfiguration config, ContainerBuilder builder)
         {
-            //Register your Web API controllers.  
+            // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterWebApiFilterProvider(config);
@@ -62,10 +57,10 @@ namespace WebAPI_EF_CodeFirstFromDb
                    .As<IUnitOfWork>()
                    .InstancePerRequest();
 
-            //Set the dependency resolver to be Autofac.  
-            Container = builder.Build();
+            // Set the dependency resolver to be Autofac.
+            container = builder.Build();
 
-            return Container;
+            return container;
         }
     }
 }

@@ -1,15 +1,10 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using WebAPI_EF_CodeFirstFromDb.Models;
-using WebAPI_EF_CodeFirstFromDb.Repository;
-
-namespace WebAPI_EF_CodeFirstFromDb.UoW
+﻿namespace WebAPI_EF_CodeFirstFromDb.UoW
 {
-    // References: 
+    using System;
+    using System.Data.Entity;
+    using WebAPI_EF_CodeFirstFromDb.Repository;
+
+    // References:
     // https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
     // https://lostechies.com/derekgreer/2015/11/01/survey-of-entity-framework-unit-of-work-patterns/
     // https://techbrij.com/generic-repository-unit-of-work-entity-framework-unit-testing-asp-net-mvc
@@ -17,6 +12,7 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
     {
         private readonly DbContext context;
         private DbContextTransaction transaction;
+        private bool disposed = false;
 
         public UnitOfWork(IRepository repository, DbContext context)
         {
@@ -25,31 +21,39 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
 
         void IUnitOfWork.BeginTransaction()
         {
-            transaction = context.Database.BeginTransaction();
+            this.transaction = this.context.Database.BeginTransaction();
         }
 
         void IUnitOfWork.CommitTransaction()
         {
-            if (transaction == null)
+            if (this.transaction == null)
+            {
                 return;
+            }
 
-            context.SaveChanges();
-            transaction.Commit();
+            this.context.SaveChanges();
+            this.transaction.Commit();
 
-            transaction = null;
+            this.transaction = null;
         }
 
         void IUnitOfWork.RollbackTransaction()
         {
-            if (transaction == null)
+            if (this.transaction == null)
+            {
                 return;
+            }
 
-            transaction.Rollback();
+            this.transaction.Rollback();
 
-            transaction = null;
+            this.transaction = null;
         }
 
-        private bool disposed = false;
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -57,16 +61,11 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    this.context.Dispose();
                 }
             }
-            this.disposed = true;
-        }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            this.disposed = true;
         }
     }
 }

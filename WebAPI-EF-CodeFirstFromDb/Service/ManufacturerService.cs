@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using WebAPI_EF_CodeFirstFromDb.Models;
-using WebAPI_EF_CodeFirstFromDb.Repository;
-using WebAPI_EF_CodeFirstFromDb.UoW;
-
-namespace WebAPI_EF_CodeFirstFromDb.Service
+﻿namespace WebAPI_EF_CodeFirstFromDb.Service
 {
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using WebAPI_EF_CodeFirstFromDb.Models;
+    using WebAPI_EF_CodeFirstFromDb.Repository;
+
     public class ManufacturerService : IManufacturerService
     {
         private readonly IRepository repository;
@@ -17,9 +14,10 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
         {
             this.repository = repository;
         }
+
         void IManufacturerService.Add(Manufacturer entity)
         {
-            repository.Add<Manufacturer>(entity);
+            this.repository.Add<Manufacturer>(entity);
         }
 
         void IManufacturerService.Delete(Manufacturer entity)
@@ -34,7 +32,7 @@ namespace WebAPI_EF_CodeFirstFromDb.Service
 
         Manufacturer IManufacturerService.Find<T>(Expression<Func<Manufacturer, bool>> predicate)
         {
-            var queryable = repository.GetAll<Manufacturer>();
+            var queryable = this.repository.GetAll<Manufacturer>();
             return queryable.Where(predicate).ToList().FirstOrDefault();
         }
 
