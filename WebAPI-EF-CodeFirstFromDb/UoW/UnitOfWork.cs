@@ -1,71 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WebAPI_EF_CodeFirstFromDb.Models;
-using WebAPI_EF_CodeFirstFromDb.Repository;
-
-namespace WebAPI_EF_CodeFirstFromDb.UoW
+﻿namespace WebAPI_EF_CodeFirstFromDb.UoW
 {
-    // References: 
+    using System;
+    using System.Data.Entity;
+    using WebAPI_EF_CodeFirstFromDb.Repository;
+
+    // References:
     // https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
     // https://lostechies.com/derekgreer/2015/11/01/survey-of-entity-framework-unit-of-work-patterns/
+    // https://techbrij.com/generic-repository-unit-of-work-entity-framework-unit-testing-asp-net-mvc
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        EFContext context = new EFContext();
-        Repository.Repository repository;
+        private readonly DbContext context;
+        private DbContextTransaction transaction;
+        private bool disposed = false;
 
-        private static readonly UnitOfWork instance = new UnitOfWork();
-        // Explicit static constructor to tell C# compiler  
-        // not to mark type as beforefieldinit  
-        static UnitOfWork()
+        public UnitOfWork(IRepository repository, DbContext context)
         {
-        }
-        private UnitOfWork()
-        {
-        }
-        public static UnitOfWork Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
-
-        public Repository.Repository Repository
-        {
-            get
-            {
-
-                if (this.repository == null)
-                {
-                    this.repository = new Repository.Repository(context);
-                }
-                return repository;
-            }
+            this.context = context;
         }
 
         void IUnitOfWork.BeginTransaction()
         {
-            throw new NotImplementedException();
+            this.transaction = this.context.Database.BeginTransaction();
         }
 
         void IUnitOfWork.CommitTransaction()
         {
-            throw new NotImplementedException();
+            if (this.transaction == null)
+            {
+                return;
+            }
+
+            this.context.SaveChanges();
+            this.transaction.Commit();
+
+            this.transaction = null;
         }
 
         void IUnitOfWork.RollbackTransaction()
         {
-            throw new NotImplementedException();
+            if (this.transaction == null)
+            {
+                return;
+            }
+
+            this.transaction.Rollback();
+
+            this.transaction = null;
         }
 
-        public void Complete()
+        public void Dispose()
         {
-            context.SaveChanges();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
-
-        private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -73,17 +61,11 @@ namespace WebAPI_EF_CodeFirstFromDb.UoW
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    this.context.Dispose();
                 }
             }
+
             this.disposed = true;
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
     }
 }

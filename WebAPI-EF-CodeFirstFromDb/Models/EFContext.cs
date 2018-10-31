@@ -1,9 +1,6 @@
 namespace WebAPI_EF_CodeFirstFromDb.Models
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class EFContext : DbContext
     {
@@ -13,7 +10,9 @@ namespace WebAPI_EF_CodeFirstFromDb.Models
         }
 
         public virtual DbSet<Category> Categories { get; set; }
+
         public virtual DbSet<Vehicle> Vehicles { get; set; }
+
         public virtual DbSet<Manufacturer> Manufacturers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
